@@ -10,7 +10,7 @@ SPMS is a web application designed to help teams manage project information, req
 ## Technology Stack
 
 - **Frontend:** React, TypeScript, and Vite
-- **Backend and Database:** Supabase with PostgreSQL
+- **Backend and Database:** Supabase with PostgreSQL and Node.js
 - **Hosting:** Vercel
 - **Source Control:** GitHub
 

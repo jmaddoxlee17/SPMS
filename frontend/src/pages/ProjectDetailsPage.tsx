@@ -9,7 +9,9 @@ export default function ProjectDetailsPage() {
         </div>
         <div>
           <h1>Project Details</h1>
-          <p>View and manage project information, manager, and team members.</p>
+          <p>
+            View and manage project information, manager, and team memberss.
+          </p>
         </div>
       </div>
 

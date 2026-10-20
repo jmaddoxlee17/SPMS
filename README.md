@@ -26,7 +26,7 @@ SPMS is a web application designed to help teams manage project information, req
 
 ```bash
 git clone <repository-url>
-cd software-project-management-system
+cd spms
 cd frontend
 npm install
 npm run dev

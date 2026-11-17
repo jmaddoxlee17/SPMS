@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   ArrowLeft,
@@ -10,55 +10,21 @@ import {
   Users,
   RefreshCw,
 } from "lucide-react";
+
 import {
   getProjectReport,
   type ProjectReport,
 } from "../services/projectReportService";
-import { getProjectById } from "../services/projectService";
-import {
-  getRequirements,
-  type Requirement,
-  type RequirementStatus,
-} from "../services/requirementService";
-import {
-  getProjectRisks,
-  type ProjectRisk,
-  type RiskStatus,
-} from "../services/projectRiskService";
-import {
-  getEffortEntries,
-  type EffortEntry,
-  type EffortCategory,
-} from "../services/effortService";
-import {
-  getProjectMembers,
-  type ProjectMember,
-} from "../services/projectMemberService";
 
 import "./ReportsPage.css";
 
-const phaseLabels: Record<EffortCategory, string> = {
+const phaseLabels: Record<string, string> = {
   requirement_analysis: "Requirement Analysis",
   design: "Design",
   coding: "Coding",
   testing: "Testing",
   project_management: "Project Management",
 };
-
-const requirementStatuses: RequirementStatus[] = [
-  "proposed",
-  "approved",
-  "implemented",
-  "verified",
-  "rejected",
-];
-
-const riskStatuses: RiskStatus[] = [
-  "identified",
-  "mitigating",
-  "resolved",
-  "accepted",
-];
 
 const formatHours = (hours: number): string => hours.toFixed(2);
 
@@ -72,12 +38,6 @@ export default function ReportsPage() {
   const navigate = useNavigate();
 
   const [report, setReport] = useState<ProjectReport | null>(null);
-  const [projectName, setProjectName] = useState("");
-  const [requirements, setRequirements] = useState<Requirement[]>([]);
-  const [risks, setRisks] = useState<ProjectRisk[]>([]);
-  const [entries, setEntries] = useState<EffortEntry[]>([]);
-  const [members, setMembers] = useState<ProjectMember[]>([]);
-
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState("");
@@ -94,6 +54,7 @@ export default function ReportsPage() {
         setRefreshing(true);
       } else {
         setLoading(true);
+        setReport(null);
       }
 
       setError("");
@@ -119,101 +80,36 @@ export default function ReportsPage() {
     void loadReports();
   }, [loadReports]);
 
-  // Overall person-hours
-  const totalHours = useMemo(
-    () => entries.reduce((sum, entry) => sum + Number(entry.hours), 0),
-    [entries],
-  );
+  const totalRequirements = report?.summary.total_requirements ?? 0;
 
-  // Requirement completion: implemented or verified
-  const completedRequirements = requirements.filter(
-    (requirement) =>
-      requirement.status === "implemented" || requirement.status === "verified",
-  ).length;
+  const totalRisks = report?.summary.total_risks ?? 0;
+
+  const totalHours = report?.summary.total_hours ?? 0;
 
   const completionPercentage =
-    requirements.length > 0
-      ? (completedRequirements / requirements.length) * 100
-      : 0;
+    report?.summary.requirement_completion_percentage ?? 0;
 
-  // Risks not yet resolved or accepted
-  const openRisks = risks.filter(
-    (risk) => risk.status === "identified" || risk.status === "mitigating",
-  ).length;
+  const openRisks = report?.summary.open_risks ?? 0;
 
-  // Requirement status summary
-  const requirementsByStatus = requirementStatuses.map((status) => ({
-    status,
-    count: requirements.filter((requirement) => requirement.status === status)
-      .length,
+  const requirementsByStatus = report?.requirements_by_status ?? [];
+
+  const risksByStatus = report?.risks_by_status ?? [];
+
+  const hoursByPhase = (report?.hours_by_phase ?? []).map((item) => ({
+    ...item,
+    label: phaseLabels[item.category] ?? item.category,
   }));
 
-  // Risk status summary
-  const risksByStatus = riskStatuses.map((status) => ({
-    status,
-    count: risks.filter((risk) => risk.status === status).length,
-  }));
+  const hoursByMember = report?.hours_by_member ?? [];
 
-  // Development phase totals
-  const hoursByPhase = Object.entries(phaseLabels).map(([category, label]) => ({
-    category,
-    label,
-    hours: entries
-      .filter((entry) => entry.category === category)
-      .reduce((sum, entry) => sum + Number(entry.hours), 0),
-  }));
+  const hoursByRequirement = report?.hours_by_requirement ?? [];
 
-  // Team member effort totals
-
-  const hoursByMember = Array.from(
-    new Set([
-      ...members.map((member) => member.user_id),
-      ...entries.map((entry) => entry.user_id),
-    ]),
-  )
-    .map((userId) => {
-      const member = members.find((item) => item.user_id === userId);
-
-      const hours = entries
-        .filter((entry) => entry.user_id === userId)
-        .reduce((sum, entry) => sum + Number(entry.hours), 0);
-
-      const emailName = (member?.email || "")
-        .split("@")[0]
-        .replace(/[._-]+/g, " ")
-        .trim();
-
-      return {
-        userId,
-        name:
-          member?.profiles?.display_name?.trim() ||
-          emailName ||
-          "Former Team Member",
-        role: member?.role || "former member",
-        hours,
-      };
-    })
-    .sort((a, b) => b.hours - a.hours);
-
-  // Requirement-specific effort
-  const hoursByRequirement = requirements
-    .map((requirement) => ({
-      id: requirement.id,
-      title: requirement.title,
-      hours: entries
-        .filter((entry) => entry.requirement_id === requirement.id)
-        .reduce((sum, entry) => sum + Number(entry.hours), 0),
-    }))
-    .sort((a, b) => b.hours - a.hours);
-
-  const generalHours = entries
-    .filter((entry) => entry.requirement_id === null)
-    .reduce((sum, entry) => sum + Number(entry.hours), 0);
+  const generalHours = report?.general_hours ?? 0;
 
   return (
     <div className="spms-reports-page">
-      {/* Navigation */}
       <button
+        type="button"
         className="spms-reports-back"
         onClick={() =>
           navigate(projectId ? `/projects/${projectId}/details` : "/projects")
@@ -223,7 +119,6 @@ export default function ReportsPage() {
         Back to Project Details
       </button>
 
-      {/* Heading */}
       <header className="spms-reports-heading">
         <div>
           <div className="spms-reports-eyebrow">
@@ -234,13 +129,14 @@ export default function ReportsPage() {
           <h1>Project Reports</h1>
 
           <p>
-            {projectName
-              ? `${projectName} — Project performance and progress overview.`
+            {report?.project.name
+              ? `${report.project.name} — Project performance and progress overview.`
               : "Project performance and progress overview."}
           </p>
         </div>
 
         <button
+          type="button"
           className="spms-btn spms-btn-secondary"
           onClick={() => void loadReports(true)}
           disabled={loading || refreshing}
@@ -260,20 +156,23 @@ export default function ReportsPage() {
         <div className="spms-reports-card spms-reports-empty">
           Loading project reports...
         </div>
+      ) : !report ? (
+        <div className="spms-reports-card spms-reports-empty">
+          Report data is unavailable. Try refreshing.
+        </div>
       ) : (
         <>
-          {/* Summary Metrics */}
           <div className="spms-reports-stats">
             {[
               {
                 label: "Requirements",
-                value: String(requirements.length),
+                value: String(totalRequirements),
                 icon: ClipboardList,
                 color: "blue",
               },
               {
                 label: "Requirement Completion",
-                value: `${completionPercentage.toFixed(0)}%`,
+                value: `${completionPercentage}%`,
                 icon: CheckCircle2,
                 color: "green",
               },
@@ -301,18 +200,18 @@ export default function ReportsPage() {
             ))}
           </div>
 
-          {/* Requirements + Risks */}
           <div className="spms-reports-grid">
             <section className="spms-reports-card spms-reports-section">
               <h2>Requirement Progress</h2>
+
               <p className="spms-reports-subtitle">
                 Requirements grouped by current status
               </p>
 
               {requirementsByStatus.map((item) => {
                 const percentage =
-                  requirements.length > 0
-                    ? (item.count / requirements.length) * 100
+                  totalRequirements > 0
+                    ? (item.count / totalRequirements) * 100
                     : 0;
 
                 return (
@@ -335,13 +234,14 @@ export default function ReportsPage() {
 
             <section className="spms-reports-card spms-reports-section">
               <h2>Risk Overview</h2>
+
               <p className="spms-reports-subtitle">
                 Risks grouped by resolution status
               </p>
 
               {risksByStatus.map((item) => {
                 const percentage =
-                  risks.length > 0 ? (item.count / risks.length) * 100 : 0;
+                  totalRisks > 0 ? (item.count / totalRisks) * 100 : 0;
 
                 return (
                   <div className="spms-reports-progress-item" key={item.status}>
@@ -362,9 +262,9 @@ export default function ReportsPage() {
             </section>
           </div>
 
-          {/* Development Phase Hours */}
           <section className="spms-reports-card spms-reports-section">
             <h2>Hours by Development Phase</h2>
+
             <p className="spms-reports-subtitle">
               Aggregated person-hours across the five work categories
             </p>
@@ -391,13 +291,13 @@ export default function ReportsPage() {
             })}
           </section>
 
-          {/* Team Member Hours */}
           <section className="spms-reports-card">
             <div className="spms-reports-section-heading">
               <Users size={19} />
+
               <div>
                 <h2>Hours by Team Member</h2>
-                <p>Compare recorded effort across the project team</p>
+                <p>Recorded effort across the project team</p>
               </div>
             </div>
 
@@ -413,11 +313,15 @@ export default function ReportsPage() {
 
                 <tbody>
                   {hoursByMember.map((member) => (
-                    <tr key={member.userId}>
+                    <tr key={member.user_id}>
                       <td className="spms-reports-member-name">
-                        {member.name}
+                        {member.display_name}
                       </td>
-                      <td className="spms-reports-capitalize">{member.role}</td>
+
+                      <td className="spms-reports-capitalize">
+                        {titleCase(member.role)}
+                      </td>
+
                       <td className="spms-reports-hours">
                         {formatHours(member.hours)}
                       </td>
@@ -432,10 +336,10 @@ export default function ReportsPage() {
             )}
           </section>
 
-          {/* Requirement Hours */}
           <section className="spms-reports-card">
             <div className="spms-reports-section-heading">
               <ClipboardList size={19} />
+
               <div>
                 <h2>Hours by Requirement</h2>
                 <p>Person-hours linked to individual project requirements</p>
@@ -453,7 +357,7 @@ export default function ReportsPage() {
 
                 <tbody>
                   {hoursByRequirement.map((item) => (
-                    <tr key={item.id}>
+                    <tr key={item.requirement_id}>
                       <td>{item.title}</td>
                       <td className="spms-reports-hours">
                         {formatHours(item.hours)}

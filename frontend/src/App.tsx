@@ -1,82 +1,100 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+
 import MainLayout from "./components/layout/MainLayout";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import DashboardPage from "./pages/DashboardPage";
-import RequirementsPage from "./pages/RequirementsPage";
+import ProjectsPage from "./pages/ProjectPage";
+import ProjectDetailsPage from "./pages/ProjectDetailsPage";
+import ProjectRequirementsPage from "./pages/ProjectRequirementsPage";
 import RisksPage from "./pages/RisksPage";
 import EffortTrackingPage from "./pages/EffortTrackingPage";
 import ReportsPage from "./pages/ReportsPage";
-import ProjectDetailsPage from "./pages/ProjectDetailsPage";
-import ProjectsPage from "./pages/ProjectPage";
+import LoginPage from "./pages/LoginPage";
 
 export default function App() {
   return (
     <Routes>
-      <Route
-        path="/dashboard"
-        element={
-          <MainLayout pageTitle="Dashboard">
-            <DashboardPage />
-          </MainLayout>
-        }
-      />
+      {/* Public Routes */}
+      <Route path="/login" element={<LoginPage />} />
 
-      <Route
-        path="/projects"
-        element={
-          <MainLayout pageTitle="Projects">
-            <ProjectsPage />
-          </MainLayout>
-        }
-      />
+      {/* All protected SPMS routes */}
+      <Route element={<ProtectedRoute />}>
+        {/* Dashboard */}
+        <Route
+          path="/dashboard"
+          element={
+            <MainLayout pageTitle="Dashboard">
+              <DashboardPage />
+            </MainLayout>
+          }
+        />
 
-      <Route
-        path="/projects/:projectId/details"
-        element={
-          <MainLayout pageTitle="Project Details">
-            <ProjectDetailsPage />
-          </MainLayout>
-        }
-      />
+        {/* Projects */}
+        <Route
+          path="/projects"
+          element={
+            <MainLayout pageTitle="Projects">
+              <ProjectsPage />
+            </MainLayout>
+          }
+        />
 
-      <Route
-        path="/projects/:projectId/requirements"
-        element={
-          <MainLayout pageTitle="Requirements">
-            <RequirementsPage />
-          </MainLayout>
-        }
-      />
+        {/* Project Details */}
+        <Route
+          path="/projects/:projectId/details"
+          element={
+            <MainLayout pageTitle="Project Details">
+              <ProjectDetailsPage />
+            </MainLayout>
+          }
+        />
 
-      <Route
-        path="/projects/:projectId/risks"
-        element={
-          <MainLayout pageTitle="Risks">
-            <RisksPage />
-          </MainLayout>
-        }
-      />
+        {/* Requirements Management */}
+        <Route
+          path="/projects/:projectId/requirements"
+          element={
+            <MainLayout pageTitle="Requirements">
+              <ProjectRequirementsPage />
+            </MainLayout>
+          }
+        />
 
-      <Route
-        path="/projects/:projectId/effort"
-        element={
-          <MainLayout pageTitle="Effort Tracking">
-            <EffortTrackingPage />
-          </MainLayout>
-        }
-      />
+        {/* Risk Management */}
+        <Route
+          path="/projects/:projectId/risks"
+          element={
+            <MainLayout pageTitle="Risks">
+              <RisksPage />
+            </MainLayout>
+          }
+        />
 
-      <Route
-        path="/projects/:projectId/reports"
-        element={
-          <MainLayout pageTitle="Reports">
-            <ReportsPage />
-          </MainLayout>
-        }
-      />
+        {/* Effort Tracking */}
+        <Route
+          path="/projects/:projectId/effort"
+          element={
+            <MainLayout pageTitle="Effort Tracking">
+              <EffortTrackingPage />
+            </MainLayout>
+          }
+        />
 
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        {/* Reports */}
+        <Route
+          path="/projects/:projectId/reports"
+          element={
+            <MainLayout pageTitle="Reports">
+              <ReportsPage />
+            </MainLayout>
+          }
+        />
+
+        {/* Default Redirects */}
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
+      </Route>
     </Routes>
   );
 }

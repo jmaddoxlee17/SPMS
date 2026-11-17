@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import { NavLink, useParams } from "react-router-dom";
 
+import "./Sidebar.css";
+
 interface SidebarProps {
   activePage?: string;
   onNavigate?: () => void;
@@ -18,68 +20,79 @@ interface SidebarProps {
 export default function Sidebar({ onNavigate }: SidebarProps) {
   const { projectId } = useParams<{ projectId: string }>();
 
-  const projectLinks = [
-    {
-      label: "Project Details",
-      path: `/projects/${projectId}/details`,
-      icon: FolderKanban,
-    },
-    {
-      label: "Requirements",
-      path: `/projects/${projectId}/requirements`,
-      icon: ClipboardList,
-    },
-    {
-      label: "Risks",
-      path: `/projects/${projectId}/risks`,
-      icon: ShieldAlert,
-    },
-    {
-      label: "Effort Tracking",
-      path: `/projects/${projectId}/effort`,
-      icon: Clock,
-    },
-    {
-      label: "Reports",
-      path: `/projects/${projectId}/reports`,
-      icon: ChartNoAxesCombined,
-    },
-  ];
+  const projectLinks = projectId
+    ? [
+        {
+          label: "Project Details",
+          path: `/projects/${projectId}/details`,
+          icon: FolderKanban,
+        },
+        {
+          label: "Requirements",
+          path: `/projects/${projectId}/requirements`,
+          icon: ClipboardList,
+        },
+        {
+          label: "Risks",
+          path: `/projects/${projectId}/risks`,
+          icon: ShieldAlert,
+        },
+        {
+          label: "Effort Tracking",
+          path: `/projects/${projectId}/effort`,
+          icon: Clock,
+        },
+        {
+          label: "Reports",
+          path: `/projects/${projectId}/reports`,
+          icon: ChartNoAxesCombined,
+        },
+      ]
+    : [];
+
+  const getNavClass = ({ isActive }: { isActive: boolean }) =>
+    `sidebar-nav-item${isActive ? " active" : ""}`;
+
+  const getProjectNavClass = ({ isActive }: { isActive: boolean }) =>
+    `project-sidebar-link${isActive ? " active" : ""}`;
 
   return (
     <aside className="sidebar">
+      {/* Brand */}
       <div className="sidebar-brand">
         <div className="sidebar-brand-icon">
-          <Layers size={22} />
+          <Layers size={20} />
         </div>
         <span>SPMS</span>
       </div>
 
+      {/* Navigation */}
       <nav className="sidebar-nav" aria-label="Main navigation">
-        <NavLink
-          to="/dashboard"
-          onClick={onNavigate}
-          end
-          className={({ isActive }) =>
-            `sidebar-nav-item${isActive ? " active" : ""}`
-          }
-        >
-          <LayoutDashboard size={19} />
-          <span>Dashboard</span>
-        </NavLink>
+        <div className="sidebar-nav-group">
+          <span className="sidebar-nav-label">WORKSPACE</span>
 
-        <NavLink
-          to="/projects"
-          onClick={onNavigate}
-          end
-          className={({ isActive }) =>
-            `sidebar-nav-item${isActive ? " active" : ""}`
-          }
-        >
-          <FolderKanban size={19} />
-          <span>Projects</span>
-        </NavLink>
+          <NavLink
+            to="/dashboard"
+            onClick={onNavigate}
+            end
+            className={getNavClass}
+          >
+            <LayoutDashboard size={18} />
+            <span>Dashboard</span>
+          </NavLink>
 
+          <NavLink
+            to="/projects"
+            onClick={onNavigate}
+            end
+            className={getNavClass}
+          >
+            <FolderKanban size={18} />
+            <span>Projects</span>
+          </NavLink>
+        </div>
+
+        {/* Current Project */}
         {projectId && (
           <div className="project-sidebar-section">
             <div className="project-sidebar-heading">
@@ -94,9 +107,7 @@ export default function Sidebar({ onNavigate }: SidebarProps) {
                   to={path}
                   onClick={onNavigate}
                   end
-                  className={({ isActive }) =>
-                    `project-sidebar-link${isActive ? " active" : ""}`
-                  }
+                  className={getProjectNavClass}
                 >
                   <Icon size={17} />
                   <span>{label}</span>

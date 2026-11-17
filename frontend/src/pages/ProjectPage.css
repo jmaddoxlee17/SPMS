@@ -1,0 +1,639 @@
+/* =========================================
+   SPMS — PROJECTS PAGE
+   ========================================= */
+
+.spms-projects-page {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 32px 48px;
+  color: #17243d;
+}
+
+/* =========================================
+   PAGE HEADER
+   ========================================= */
+
+.spms-projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.spms-projects-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.spms-projects-header h1 {
+  margin: 0 0 9px;
+  font-size: 27px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #17243d;
+}
+
+.spms-projects-header p {
+  margin: 0;
+  max-width: 600px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.spms-projects-primary-button,
+.spms-projects-secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 41px;
+  padding: 10px 17px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    transform 0.15s;
+}
+
+.spms-projects-primary-button {
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  color: #fff;
+}
+
+.spms-projects-primary-button:hover:not(:disabled) {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.spms-projects-secondary-button {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #334155;
+}
+
+.spms-projects-secondary-button:hover:not(:disabled) {
+  background: #f8fafc;
+}
+
+.spms-projects-primary-button:disabled,
+.spms-projects-secondary-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.spms-projects-primary-button:focus-visible,
+.spms-projects-secondary-button:focus-visible,
+.spms-projects-page .project-open-button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+/* =========================================
+   SUMMARY CARDS
+   ========================================= */
+
+.spms-projects-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.spms-projects-stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 23px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+.spms-projects-stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+}
+
+.spms-projects-stat-icon.blue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.spms-projects-stat-icon.purple {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.spms-projects-stat-icon.green {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.spms-projects-stat-card strong {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #17243d;
+  font-variant-numeric: tabular-nums;
+}
+
+.spms-projects-stat-card > span {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* =========================================
+   CREATE PROJECT FORM
+   ========================================= */
+
+.spms-projects-form-card {
+  margin-bottom: 28px;
+  padding: 27px 28px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+.spms-projects-form-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 22px;
+  margin-bottom: 23px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.spms-projects-form-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.spms-projects-form-heading h2 {
+  margin: 0 0 5px;
+  color: #17243d;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.spms-projects-form-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.spms-projects-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 21px;
+}
+
+.spms-projects-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.spms-projects-required {
+  color: #dc2626;
+  margin-left: 4px;
+}
+
+.spms-projects-field input,
+.spms-projects-field textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #17243d;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.5;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.spms-projects-field input {
+  min-height: 43px;
+}
+
+.spms-projects-field textarea {
+  min-height: 105px;
+  resize: vertical;
+}
+
+.spms-projects-field input::placeholder,
+.spms-projects-field textarea::placeholder {
+  color: #94a3b8;
+}
+
+.spms-projects-field input:focus,
+.spms-projects-field textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.spms-projects-form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* =========================================
+   PROJECT LIST
+   ========================================= */
+
+.spms-projects-section {
+  width: 100%;
+}
+
+.spms-projects-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 19px;
+}
+
+.spms-projects-section-header h2 {
+  margin: 0 0 6px;
+  color: #17243d;
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.spms-projects-section-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.spms-projects-count {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* =========================================
+   PROJECT GRID
+   ========================================= */
+
+.spms-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+/* =========================================
+   PROJECT CARD
+   ========================================= */
+
+.spms-project-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 265px;
+  padding: 23px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 13px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+  transition:
+    box-shadow 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
+}
+
+.spms-project-card:hover {
+  border-color: #bfdbfe;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.075);
+  transform: translateY(-2px);
+}
+
+.spms-project-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.spms-project-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  background: #eff6ff;
+  border-radius: 10px;
+  color: #2563eb;
+}
+
+/* =========================================
+   PROJECT STATUS
+   ========================================= */
+
+.spms-project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.spms-project-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.spms-project-status.status-planning {
+  color: #1d4ed8;
+  background: #dbeafe;
+}
+
+.spms-project-status.status-active {
+  color: #15803d;
+  background: #dcfce7;
+}
+
+.spms-project-status.status-on_hold {
+  color: #92400e;
+  background: #fef3c7;
+}
+
+.spms-project-status.status-completed {
+  color: #475569;
+  background: #f1f5f9;
+}
+
+/* =========================================
+   PROJECT CONTENT
+   ========================================= */
+
+.spms-project-card-content {
+  flex: 1;
+}
+
+.spms-project-card-content h3 {
+  margin: 0 0 10px;
+  color: #17243d;
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.spms-project-card-content p {
+  margin: 0 0 18px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.spms-project-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 17px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* =========================================
+   CARD FOOTER + OPEN PROJECT BUTTON
+   ========================================= */
+
+.spms-project-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 17px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.spms-project-card-label {
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.spms-projects-page .project-open-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 0 7px 10px;
+  background: transparent;
+  border: none;
+  color: #2563eb;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.spms-projects-page .project-open-button:hover {
+  color: #1d4ed8;
+}
+
+.spms-projects-page .project-open-button svg {
+  transition: transform 0.15s;
+}
+
+.spms-projects-page .project-open-button:hover svg {
+  transform: translateX(3px);
+}
+
+/* =========================================
+   EMPTY AND LOADING STATES
+   ========================================= */
+
+.spms-projects-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 60px 24px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  color: #64748b;
+  text-align: center;
+}
+
+.spms-projects-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 5px;
+  border-radius: 15px;
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.spms-projects-empty h3 {
+  margin: 0;
+  color: #334155;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.spms-projects-empty p {
+  max-width: 410px;
+  margin: 0 0 14px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   FEEDBACK MESSAGES
+   ========================================= */
+
+.spms-projects-alert,
+.spms-projects-success {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.spms-projects-alert {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+.spms-projects-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 1100px) {
+  .spms-projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .spms-projects-page {
+    padding: 18px 14px 32px;
+  }
+
+  .spms-projects-header {
+    align-items: flex-start;
+  }
+
+  .spms-projects-header h1 {
+    font-size: 23px;
+  }
+
+  .spms-projects-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .spms-projects-stat-card {
+    padding: 17px;
+  }
+
+  .spms-projects-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .spms-project-card {
+    min-height: 240px;
+    padding: 20px;
+  }
+
+  .spms-projects-form-card {
+    padding: 20px 18px;
+  }
+
+  .spms-projects-section-header {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spms-project-card,
+  .spms-projects-page .project-open-button,
+  .spms-projects-page .project-open-button svg {
+    transition: none;
+  }
+}

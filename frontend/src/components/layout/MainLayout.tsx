@@ -1,7 +1,8 @@
-import { useState } from "react";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+
 import Sidebar from "./Sidebar";
 import TopNav from "./TopNav";
+
 import "../../App.css";
 
 interface MainLayoutProps {
@@ -16,7 +17,7 @@ export default function MainLayout({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen((open) => !open);
+    setIsSidebarOpen((previous) => !previous);
   };
 
   const closeSidebar = () => {
@@ -25,6 +26,7 @@ export default function MainLayout({
 
   return (
     <div className="app-shell">
+      {/* Mobile sidebar overlay */}
       {isSidebarOpen && (
         <button
           type="button"
@@ -34,12 +36,14 @@ export default function MainLayout({
         />
       )}
 
+      {/* Sidebar */}
       <aside
         className={`sidebar-container ${isSidebarOpen ? "sidebar-open" : ""}`}
       >
-        <Sidebar activePage={pageTitle} onNavigate={closeSidebar} />
+        <Sidebar onNavigate={closeSidebar} />
       </aside>
 
+      {/* Main workspace */}
       <div className="main-column">
         <TopNav
           pageTitle={pageTitle}

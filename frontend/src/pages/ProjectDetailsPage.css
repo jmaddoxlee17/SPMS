@@ -1,0 +1,722 @@
+/* SPMS — Project Details */
+
+.spms-details-page {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 32px 48px;
+  color: #17243d;
+}
+
+.spms-details-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+  overflow: hidden;
+}
+
+/* Navigation */
+
+.spms-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.spms-back-link:hover {
+  color: #2563eb;
+}
+
+/* Project Header */
+
+.spms-project-header {
+  padding: 30px;
+}
+
+.spms-project-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.spms-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.spms-project-title {
+  margin: 0 0 14px;
+  color: #17243d;
+  font-size: clamp(23px, 3vw, 29px);
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.spms-project-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.spms-meta-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.spms-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.spms-status-active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.spms-status-planning {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.spms-status-on_hold {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.spms-status-completed {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.spms-project-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Shared Buttons */
+
+.spms-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 39px;
+  padding: 9px 15px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+
+.spms-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.spms-btn-primary {
+  color: #fff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+.spms-btn-primary:hover:not(:disabled) {
+  color: #fff;
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.spms-btn-secondary {
+  color: #334155;
+  background: #fff;
+  border-color: #cbd5e1;
+}
+
+.spms-btn-secondary:hover:not(:disabled) {
+  background: #f8fafc;
+}
+
+.spms-btn-danger {
+  color: #dc2626;
+  background: #fff;
+  border-color: #fecaca;
+}
+
+.spms-btn-danger:hover:not(:disabled) {
+  background: #fef2f2;
+}
+
+/* Project Information */
+
+.spms-project-information {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+  padding-top: 26px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.spms-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.spms-info-full {
+  grid-column: 1 / -1;
+}
+
+.spms-info-label {
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.spms-info-value {
+  color: #17243d;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.spms-info-description {
+  margin: 0;
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* Forms */
+
+.spms-project-edit {
+  margin-top: 28px;
+  padding-top: 26px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.spms-project-edit h3,
+.spms-add-member-form h4 {
+  margin: 0 0 22px;
+  color: #17243d;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.spms-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.spms-form-field label {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.spms-form-field input,
+.spms-form-field textarea,
+.spms-form-field select {
+  width: 100%;
+  min-height: 43px;
+  padding: 10px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #17243d;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.spms-form-field textarea {
+  resize: vertical;
+}
+
+.spms-form-field input:focus,
+.spms-form-field textarea:focus,
+.spms-form-field select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.spms-form-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.spms-details-alert {
+  margin: 18px 0;
+  padding: 13px 16px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 13px;
+}
+
+.spms-success-message {
+  margin: 18px 24px;
+  padding: 13px 16px;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  background: #f0fdf4;
+  color: #166534;
+  font-size: 13px;
+}
+
+.spms-details-loading {
+  padding: 45px;
+  text-align: center;
+  color: #64748b;
+}
+
+/* Shortcuts */
+
+.spms-project-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 20px 0 24px;
+}
+
+.spms-shortcut {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 65px;
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #fff;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
+}
+
+.spms-shortcut svg {
+  color: #2563eb;
+}
+
+.spms-shortcut:hover {
+  border-color: #93c5fd;
+  background: #f8fbff;
+}
+
+/* Project Team */
+
+.spms-team-section {
+  margin-top: 0;
+}
+
+.spms-team-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 28px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.spms-team-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.spms-section-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  color: #2563eb;
+  background: #eff6ff;
+}
+
+.spms-team-heading h3 {
+  margin: 0 0 4px;
+  font-size: 17px;
+  font-weight: 650;
+  color: #17243d;
+}
+
+.spms-team-heading p {
+  margin: 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.spms-team-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.spms-team-count {
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Add Member */
+
+.spms-add-member-form {
+  padding: 24px 28px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.spms-add-member-form h4 {
+  margin-bottom: 6px;
+}
+
+.spms-add-member-form > p {
+  margin: 0 0 22px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.spms-member-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(150px, 1fr);
+  gap: 16px;
+}
+
+/* Team Table */
+
+.spms-team-table-wrapper {
+  overflow-x: auto;
+}
+
+.spms-team-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.spms-team-table th {
+  padding: 15px 28px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.spms-team-table td {
+  padding: 17px 28px;
+  border-top: 1px solid #f1f5f9;
+  font-size: 13px;
+}
+
+.spms-team-table tbody tr:hover {
+  background: #fafcff;
+}
+
+.spms-team-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.spms-team-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.spms-team-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.spms-team-name {
+  color: #17243d;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.spms-team-user-id,
+.spms-team-date {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.spms-team-role {
+  display: inline-flex;
+  padding: 6px 11px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.spms-team-role.role-owner {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.spms-team-role.role-admin {
+  background: #ede9fe;
+  color: #6d28d9;
+}
+
+.spms-team-role.role-member {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.spms-team-role.role-viewer {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.spms-team-empty {
+  padding: 40px 24px;
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.spms-team-error {
+  margin: 20px 28px;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .spms-project-shortcuts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .spms-project-header-top {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .spms-details-page {
+    padding: 18px 14px 32px;
+  }
+
+  .spms-project-header {
+    padding: 22px 18px;
+  }
+
+  .spms-project-information {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .spms-project-shortcuts {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .spms-shortcut {
+    min-height: 60px;
+    flex-direction: column;
+    font-size: 12px;
+  }
+
+  .spms-team-header {
+    padding: 20px 18px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .spms-member-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spms-add-member-form {
+    padding: 20px 18px;
+  }
+
+  .spms-team-table th,
+  .spms-team-table td {
+    padding: 13px 14px;
+  }
+
+  .spms-project-actions {
+    width: 100%;
+  }
+}
+
+/* Project Team — Role Management */
+
+.spms-member-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spms-member-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  color: #475569;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.spms-member-action:hover:not(:disabled) {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #2563eb;
+}
+
+.spms-member-action.save {
+  color: #15803d;
+}
+
+.spms-member-action.save:hover:not(:disabled) {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.spms-member-action.danger {
+  color: #dc2626;
+}
+
+.spms-member-action.danger:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.spms-member-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spms-role-select {
+  min-width: 115px;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  color: #334155;
+  font-size: 12px;
+  outline: none;
+}
+
+.spms-role-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.spms-team-role {
+  align-items: center;
+  gap: 5px;
+}
+
+.spms-member-action:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Team member email and avatar improvements */
+
+.spms-team-avatar {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
+  border-radius: 50%;
+  background: #dbeafe;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.spms-team-user-info {
+  min-width: 0;
+}
+
+.spms-team-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #17243d;
+}
+
+.spms-team-user-id {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+.spms-team-user {
+  min-width: 0;
+}

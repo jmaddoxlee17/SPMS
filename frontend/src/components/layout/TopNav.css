@@ -1,0 +1,172 @@
+/* SPMS Top Navigation */
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  min-height: 64px;
+  padding: 0 28px;
+  background: #ffffff;
+  border-bottom: 1px solid #e4e7ec;
+}
+
+/* Left side */
+
+.top-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Breadcrumb */
+
+.top-nav-page {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.top-nav-section {
+  color: #667085;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.top-nav-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 0;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.top-nav-link:hover {
+  color: #2563eb;
+}
+
+.top-nav-breadcrumb-icon {
+  color: #98a2b3;
+  flex-shrink: 0;
+}
+
+.top-nav-project {
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  text-align: left;
+}
+
+.top-nav-title {
+  margin: 0;
+  color: #202938;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Right side */
+
+.top-nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Mobile menu control */
+
+.mobile-menu-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid #e4e7ec;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #475467;
+  cursor: pointer;
+}
+
+.mobile-menu-button:hover {
+  background: #f9fafb;
+}
+
+.mobile-menu-button:focus-visible,
+.top-nav-link:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Tablet */
+
+@media (max-width: 1024px) {
+  .top-nav {
+    padding: 0 20px;
+  }
+
+  .top-nav-project {
+    max-width: 180px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .top-nav {
+    min-height: 60px;
+    padding: 0 14px;
+    gap: 12px;
+  }
+
+  .mobile-menu-button {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .top-nav-left {
+    gap: 10px;
+  }
+
+  .top-nav-page {
+    gap: 7px;
+  }
+
+  .top-nav-section,
+  .top-nav-title {
+    font-size: 12px;
+  }
+
+  .top-nav-project {
+    max-width: 125px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-nav-page {
+    gap: 5px;
+  }
+
+  .top-nav-project {
+    max-width: 90px;
+  }
+
+  .top-nav-right {
+    gap: 6px;
+  }
+}

@@ -45,9 +45,13 @@ app.use(
 
 app.use(express.json());
 
-app.use(express.json());
-
 // Health check endpoint
+app.get("/api/health", (_req: Request, res: Response) => {
+  res.status(200).json({
+    status: "ok",
+    service: "spms-backend",
+  });
+});
 
 app.get("/api/health/database", async (_req, res) => {
   try {
